@@ -188,17 +188,17 @@ const app = {
             }
         this.loadCurrentSong()
     },
-    randomSong: function() {
-        do {
-            this.currentIndex = Math.floor(Math.random() * this.songs.length)
-        } while (condition);
+    // randomSong: function() {
+    //     do {
+    //         this.currentIndex = Math.floor(Math.random() * this.songs.length)
+    //     } while (condition);
 
 
 
-    },
+    // },
 
     start: function() {
-        this.randomSong();
+        // this.randomSong();
         // Định nghĩa các thuộc tính cho Object
         this.defineProperties();
         // Lắng nghe/ xử lý các sự kiện
