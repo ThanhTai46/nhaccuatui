@@ -28,44 +28,44 @@ const app = {
     songs: [{
             name: 'Độ Tộc 2',
             singer: 'Masew , Độ mixi , Pháo',
-            path: '/Music Player/assets/musics/song1.mp3',
-            image: '/Music Player/assets/images/song1.jpg'
+            path: '/assets/musics/song1.mp3',
+            image: '/assets/images/song1.jpg'
         },
         {
             name: 'Cưới Thôi',
             singer: 'Masew',
-            path: '/Music Player/assets/musics/song2.mp3',
-            image: '/Music Player/assets/images/song2.jpg'
+            path: '/assets/musics/song2.mp3',
+            image: '/assets/images/song2.jpg'
         },
         {
             name: 'Sài Gòn Đau Lòng Quá',
             singer: 'Hứa Kim Tuyền, Hoàng Duyên',
-            path: '/Music Player/assets/musics/song3.mp3',
-            image: '/Music Player/assets/images/song3.jpg'
+            path: '/assets/musics/song3.mp3',
+            image: '/assets/images/song3.jpg'
         },
         {
             name: '3107-3',
             singer: 'Nâu',
-            path: '/Music Player/assets/musics/song4.mp3',
-            image: '/Music Player/assets/images/song4.jpg'
+            path: '/assets/musics/song4.mp3',
+            image: '/assets/images/song4.jpg'
         },
         {
             name: 'I Love You',
             singer: 'クリス・ハート',
-            path: '/Music Player/assets/musics/song5.mp3',
-            image: '/Music Player/assets/images/song5.jpg'
+            path: '/assets/musics/song5.mp3',
+            image: '/assets/images/song5.jpg'
         },
         {
             name: '3107-2',
             singer: 'Nâu',
-            path: '/Music Player/assets/musics/song6.mp3',
-            image: '/Music Player/assets/images/song6.jpg'
+            path: '/assets/musics/song6.mp3',
+            image: '/assets/images/song6.jpg'
         },
         {
             name: 'Tháng Năm',
             singer: 'Soobin Hoàng Sơn',
-            path: '/Music Player/assets/musics/song7.mp3',
-            image: '/Music Player/assets/images/song7.jpg'
+            path: '/assets/musics/song7.mp3',
+            image: '/assets/images/song7.jpg'
         }
     ],
     render: function() {
