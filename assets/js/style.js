@@ -20,11 +20,14 @@ const progress = $('#progress');
 const btnNext = $('.btn-next');
 const btnPrev = $('.btn-prev');
 const cd = $('.cd');
+const playlist = $('.playlist');
 const randomBtn = $('.btn-random');
+const repeatBtn = $('.btn-repeat');
 const app = {
     currentIndex: 0,
     isPlaying: false,
     isRandom: false,
+    isRepeat: false,
     songs: [{
             name: 'Độ Tộc 2',
             singer: 'Masew , Độ mixi , Pháo',
@@ -69,9 +72,9 @@ const app = {
         }
     ],
     render: function() {
-        const htmls = this.songs.map(function(song) {
+        const htmls = this.songs.map((song, index) => {
             return `
-                <div class="song">
+                <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index="${index}">
                     <div class="thumb" style="background-image: url('${song.image}')">
                 </div>
                 <div class="body">
@@ -83,7 +86,9 @@ const app = {
                 </div>
                 </div>`
         })
-        $('.playlist').innerHTML = htmls.join('');
+
+        playlist.innerHTML = htmls.join('');
+
     },
     defineProperties: function() {
         Object.defineProperty(this, 'currentSong', {
@@ -159,17 +164,61 @@ const app = {
         btnNext.onclick = function() {
             _this.nextSong();
             cdAudio.play();
+            _this.render()
+            _this.scrollToActiveSong()
         }
         btnPrev.onclick = function() {
-            _this.prevSong();
-            cdAudio.play();
-        }
-        randomBtn.onclick = function(e) {
-            _this.isRandom = !_this.isRandom
-            randomBtn.classList.toggle('active', _this.isRandom);
-            _this.randomSong();
+                _this.prevSong();
+                cdAudio.play();
+                _this.render()
+                _this.scrollToActiveSong()
+            }
+            // randomBtn.onclick = function(e) {
+            //     _this.isRandom = !_this.isRandom
+            //     randomBtn.classList.toggle('active', _this.isRandom);
+            //     _this.randomSong();
+            // }
+
+        // xử lý next khi audio het 
+        cdAudio.onended = function() {
+                if (_this.isRepeat) {
+                    cdAudio.play();
+                } else {
+                    btnNext.click();
+                }
+
+            }
+            // xử lý phát lại 1 bài hát 
+        repeatBtn.onclick = function() {
+            _this.isRepeat = !_this.isRepeat
+            repeatBtn.classList.toggle('active', _this.isRepeat);
         }
 
+        // play when click bài hát
+
+        playlist.onclick = function(e) {
+            const targetAtr = e.target.closest('.song:not(.active)')
+            if (targetAtr || e.target.closest('.option')) {
+                if (targetAtr) {
+                    _this.currentIndex = Number(targetAtr.dataset.index);
+                    _this.loadCurrentSong();
+                    _this.render()
+                    cdAudio.play();
+
+
+                }
+
+            }
+        }
+
+    },
+    scrollToActiveSong: function() {
+        setTimeout(() => {
+            $('.song.active').scrollIntoView({
+                behavior: 'smooth',
+                block: 'end'
+            })
+        }, 500)
     },
     nextSong: function() {
 
@@ -189,15 +238,21 @@ const app = {
         this.loadCurrentSong()
     },
     // randomSong: function() {
+    //     let newIndex;
     //     do {
     //         this.currentIndex = Math.floor(Math.random() * this.songs.length)
-    //     } while (condition);
+    //     } while (newIndex !== this.currentIndex);
+    //     console.log(newIndex);
 
 
 
     // },
+    repeatSong: function() {
+
+    },
 
     start: function() {
+        this.repeatSong();
         // this.randomSong();
         // Định nghĩa các thuộc tính cho Object
         this.defineProperties();
